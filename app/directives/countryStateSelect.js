@@ -1,17 +1,24 @@
 (function() {
     "use strict";
-    var template = '<div class="bloc-country form-group">'
+    var template = '<div layout="row"><div class="bloc-country form-group" show-errors flex>';
     template += '<label for="country">{{countryLabel}}</label>';
     template += '<select name="country" ng-change="selectCountry()" ng-model="country"  required  class="form-control">';
-    template +='<option ng-repeat="theCountry in countries track by $index" >{{theCountry}}</option>';
-    template +='</select>';
-    template +='</div>';
-    template +='<div class="bloc-state form-group">';
-    template +='<label for="state" ng-show="states">{{stateLabel}}</label>';
-    template +='<select name="state" ng-model="countryState" ng-show="states" class="form-control">';
-    template +='<option ng-repeat="optStates in states track by $index" >{{optStates}}</option>';
-    template +='</select>';
-    template +='</div>';
+    template += '<option ng-repeat="theCountry in countries track by $index" >{{theCountry}}</option>';
+    template += '</select>';
+    template += '<div class="has-error" ng-show="showError.country" role="alert">';
+    template += '<p class="help-block error-msg">Country is required.</p>';
+    template += '</div>';
+    template += '</div>';
+    template += '<div flex="5"></div>';
+    template += '<div class="bloc-state form-group" flex>';
+    template += '<label for="state" ng-show="states">{{stateLabel}}</label>';
+    template += '<select name="state" ng-model="countryState" ng-show="states" class="form-control">';
+    template += '<option ng-repeat="optStates in states track by $index" >{{optStates}}</option>';
+    template += '</select>';
+    template += '<div class="has-error" ng-show="showError.state" role="alert">';
+    template += '<p class="help-block error-msg">State is required.</p>';
+    template += '</div>';
+    template += '</div></div>';
 
     angular
         .module("angularCountryState")
